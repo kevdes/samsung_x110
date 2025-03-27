@@ -44,6 +44,7 @@ BGREEN=`echo -e "\033[1;32m"`	# Bold Green
 UNDER_LINE=`echo -e "\e[4m"`	# Text Under Line
 STD=`echo -e "\033[0m"`		# Text Clear
 
+echo $(pwd)
 ls /root/project/predator
 
 build_kernel(){  
