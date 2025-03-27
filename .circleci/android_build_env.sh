@@ -5,8 +5,8 @@
 # SPDX-License-Identifier: GPL-3.0-only
 
 # Script to setup an AOSP Build environment on Ubuntu and Linux Mint
-ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Etc/UTC
+export DEBIAN_FRONTEND=noninteractive
+export TZ=Etc/UTC
 LATEST_MAKE_VERSION="4.3"
 UBUNTU_16_PACKAGES="libesd0-dev"
 UBUNTU_20_PACKAGES="libncurses5 curl python-is-python3"
