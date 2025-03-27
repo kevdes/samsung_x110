@@ -16,6 +16,7 @@ git clone --depth=1  https://git.codelinaro.org/clo/la/kernelplatform/prebuilts-
 git clone --depth=1 https://github.com/osm0sis/AnyKernel3 AnyKernel3
 echo "Done"
 KERNEL_DIR=$(pwd)/../kernel-5.10
+echo $KERNEL_DIR
 OUT_DIR="${KERNEL_DIR}/out"
 REPACK_DIR="${KERNEL_DIR}/AnyKernel3"
 IMAGE="${KERNEL_DIR}/arch/arm64/boot/Image"
