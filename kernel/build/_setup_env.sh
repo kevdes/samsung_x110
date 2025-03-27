@@ -137,8 +137,8 @@ for PREBUILT_BIN in "${PREBUILTS_PATHS[@]}"; do
     echo "========================================================"
     if [ -n "${PREBUILT_BIN}" ]; then
         # Mitigate dup paths
-        PATH=${PATH//"${ROOT_DIR}\/${PREBUILT_BIN}:"}
-        PATH=${ROOT_DIR}/${PREBUILT_BIN}:${PATH}
+        # PATH=${PATH//"${ROOT_DIR}\/${PREBUILT_BIN}:"}
+        PATH=${PREBUILT_BIN}:${PATH}
     fi
 done
 
