@@ -11,6 +11,8 @@ jobs:
            git config --global user.email "kevin.desa@gmail.com"
            git config --global color.ui false
            #git clone https://github.com/akhilnarang/scripts && cd scripts && bash setup/android_build_env.sh && cd ..
+           wget https://raw.githubusercontent.com/kevdes/samsung_x110/refs/heads/stock/.circleci/android_build_env.sh
+           ./android_build_env.sh
            mkdir predator
            cd predator
            wget https://raw.githubusercontent.com/kevdes/samsung_x110/refs/heads/stock/.circleci/build_menu
