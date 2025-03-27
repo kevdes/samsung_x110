@@ -15,9 +15,7 @@ git clone --depth=1 --branch android-11.0.0_r48 https://android.googlesource.com
 git clone --depth=1  https://git.codelinaro.org/clo/la/kernelplatform/prebuilts-master/clang/host/linux-x86.git clang
 git clone --depth=1 https://github.com/osm0sis/AnyKernel3 AnyKernel3
 echo "Done"
-echo $(pwd)
 KERNEL_DIR=/root/project/predator/kernel-5.10
-echo $KERNEL_DIR
 OUT_DIR="${KERNEL_DIR}/out"
 REPACK_DIR="${KERNEL_DIR}/AnyKernel3"
 IMAGE="${KERNEL_DIR}/arch/arm64/boot/Image"
