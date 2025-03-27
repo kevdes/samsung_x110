@@ -87,7 +87,11 @@ gsi_kernel(){
   git apply gsi-commits.patch
 }
 
-ls -la /root/project
+ls -la /root/project/kernel
+
+ls -la /root/project/predator/kernel
+
+ls -la $(pwd)
 
 #./build_kernel.sh
 
