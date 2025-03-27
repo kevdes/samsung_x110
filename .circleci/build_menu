@@ -44,7 +44,7 @@ BGREEN=`echo -e "\033[1;32m"`	# Bold Green
 UNDER_LINE=`echo -e "\e[4m"`	# Text Under Line
 STD=`echo -e "\033[0m"`		# Text Clear
 
-ls /root/project/predator/kernel-5.10
+ls /root/project/predator
 
 build_kernel(){  
   echo "${BGREEN}***** Compiling kernel *****${STD}"
