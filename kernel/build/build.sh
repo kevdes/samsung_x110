@@ -376,6 +376,7 @@ function rel_path() {
   echo ${path}${to#$stem}
 }
 
+
 # $1 directory of kernel modules ($1/lib/modules/x.y)
 # $2 flags to pass to depmod
 # $3 kernel version
