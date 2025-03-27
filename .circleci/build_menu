@@ -87,7 +87,7 @@ gsi_kernel(){
   git apply gsi-commits.patch
 }
 
-ls -la /root/project/scripts
+ls -la /root/project
 
 #./build_kernel.sh
 
