@@ -132,6 +132,9 @@ fi
 for PREBUILT_BIN in "${PREBUILTS_PATHS[@]}"; do
     PREBUILT_BIN=\${${PREBUILT_BIN}}
     eval PREBUILT_BIN="${PREBUILT_BIN}"
+    echo "========================================================"
+    echo "${PREBUILT_BIN}"
+    echo "========================================================"
     if [ -n "${PREBUILT_BIN}" ]; then
         # Mitigate dup paths
         PATH=${PATH//"${ROOT_DIR}\/${PREBUILT_BIN}:"}
