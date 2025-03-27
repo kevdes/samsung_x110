@@ -15,10 +15,11 @@ git clone --depth=1 --branch android-11.0.0_r48 https://android.googlesource.com
 git clone --depth=1  https://git.codelinaro.org/clo/la/kernelplatform/prebuilts-master/clang/host/linux-x86.git clang
 git clone --depth=1 https://github.com/osm0sis/AnyKernel3 AnyKernel3
 echo "Done"
+echo $(pwd)
 KERNEL_DIR=$(pwd)/../kernel-5.10
 echo $KERNEL_DIR
-OUT_DIR="${KERNEL_DIR}/out"
-OUT_DIR="/root/project/predator/kernel-5.10/out"
+#OUT_DIR="${KERNEL_DIR}/out"
+OUT_DIR="/root/project/predator/kernel/out"
 REPACK_DIR="${KERNEL_DIR}/AnyKernel3"
 IMAGE="${KERNEL_DIR}/arch/arm64/boot/Image"
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
@@ -35,9 +36,6 @@ export CLANG_PREBUILT_BIN="$(pwd)/clang/clang-r450784e/bin"
 export PATH=$PATH:$LINUX_GCC_CROSS_COMPILE_PREBUILTS_BIN:$CLANG_PREBUILT_BIN
 export LLVM=1
 #KERNEL_MAKE_ENV="LOCALVERSION=-Lightning-V2.5"
-
-ls /root/project/predator/kernel/
-ls /root/project/predator/kernel/../kernel-5.10/
 
 # Color
 ON_BLUE=`echo -e "\033[44m"`	# On Blue
