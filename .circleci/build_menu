@@ -87,9 +87,9 @@ gsi_kernel(){
   git apply gsi-commits.patch
 }
 
-ls -la $(pwd)/clang-r383902/bin
+#ls -la $(pwd)/clang-r383902/bin
 
-#./build_kernel.sh
+./build_kernel.sh
 
 #build_kernel
 
