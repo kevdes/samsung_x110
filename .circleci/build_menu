@@ -92,6 +92,7 @@ gsi_kernel(){
 
 #./build_kernel.sh
 
+
 build_kernel
 
 gsi_kernel
