@@ -50,8 +50,9 @@ build_kernel(){
   [ ! -d "$OUT_DIR" ] && mkdir $OUT_DIR
   python scripts/gen_build_config.py --kernel-defconfig gta9wifi_00_defconfig --kernel-defconfig-overlays "entry_level.config ot11.config" -m user -o out/.config
   
-  ls -la
-  make -j$(nproc) -C $(pwd) $KERNEL_MAKE_ENV gta9wifi_00.config
+  ls -la ./out
+  make -j$(nproc) -C $(pwd) $KERNEL_MAKE_ENV gta9wifi_00
+  echo "-------"
   make -j$(nproc) -C $(pwd) $KERNEL_MAKE_ENV
 
   [ -e "$(pwd)/arch/arm64/boot/Image.gz" ] && cp "$(pwd)/arch/arm64/boot/Image.gz" $OUT_DIR/Image.gz
