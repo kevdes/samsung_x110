@@ -50,7 +50,10 @@ build_kernel(){
   [ ! -d "$OUT_DIR" ] && mkdir $OUT_DIR
   python scripts/gen_build_config.py --kernel-defconfig gta9wifi_00_defconfig --kernel-defconfig-overlays "entry_level.config ot11.config" -m user -o out/build.config
 
-  export BUILD_CONFIG="./out/build.config"
+  export BUILD_CONFIG="./out/build.config"  
+  cd ./out
+  wget https://raw.githubusercontent.com/kevdes/samsung_x110/refs/heads/stock/.circleci/.config
+  cd ..
   ls -la ./out
   make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV gta9wifi_00
   #echo "-------"
