@@ -53,6 +53,7 @@ build_kernel(){
   export BUILD_CONFIG="./out/build.config"
   ls -la ./out
   make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV gta9wifi_00
+  #echo "-------"
   ls -la ./out
   #echo "-------"
   #make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV
