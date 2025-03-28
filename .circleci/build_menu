@@ -100,10 +100,10 @@ gsi_kernel(){
 
 #ls -la $(pwd)/kernel
 
-#./build_kernel.sh
+./build_kernel.sh
 
 
-build_kernel
+#build_kernel
 
 #gsi_kernel
 
