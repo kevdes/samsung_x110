@@ -34,7 +34,7 @@ if [ "x${DO_ABI_MONITOR}" == "x1" ]; then
 fi
 unset BUILD_NUMBER
 REL_KERNEL_PATH=`./${KERNEL_DIR}/scripts/get_rel_path.sh ${ROOT_DIR} kernel-5.10`
-DEFCONFIG="gki_defconfig ../../../${REL_KERNEL_PATH}/${OUT_DIR}/gta9wifi_00.config entry_level.config ot11.config"
+DEFCONFIG="gki_defconfig ${OUT_DIR}/gta9wifi_00.config entry_level.config ot11.config"
 PRE_DEFCONFIG_CMDS="cp -p ${KERNEL_DIR}/arch/arm64/configs/gta9wifi_00_defconfig ${OUT_DIR}/gta9wifi_00.config"
 EXT_MODULES="../vendor/mediatek/kernel_modules/fpsgo_cus ../vendor/mediatek/kernel_modules/met_drv_v3 ../vendor/mediatek/kernel_modules/connectivity/common ../vendor/mediatek/kernel_modules/connectivity/conninfra ../vendor/mediatek/kernel_modules/connectivity/connfem ../vendor/mediatek/kernel_modules/connectivity/gps/gps_stp ../vendor/mediatek/kernel_modules/connectivity/gps/data_link/plat/v010 ../vendor/mediatek/kernel_modules/connectivity/gps/data_link/plat/v030 ../vendor/mediatek/kernel_modules/connectivity/gps/data_link/plat/v050 ../vendor/mediatek/kernel_modules/connectivity/gps/gps_pwr ../vendor/mediatek/kernel_modules/connectivity/gps/gps_scp ../vendor/mediatek/kernel_modules/gpu ../vendor/mediatek/kernel_modules/connectivity/fmradio"
 DIST_CMDS='cp -p ${OUT_DIR}/.config ${DIST_DIR}'
