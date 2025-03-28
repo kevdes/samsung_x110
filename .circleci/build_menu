@@ -44,10 +44,6 @@ UNDER_LINE=`echo -e "\e[4m"`	# Text Under Line
 STD=`echo -e "\033[0m"`		# Text Clear
 
 cd ${KERNEL_DIR}
-echo $(pwd)
-ls ${CLANG_PREBUILT_BIN}
-
-which clang
 
 build_kernel(){  
   echo "${BGREEN}***** Compiling kernel *****${STD}"
@@ -97,6 +93,7 @@ gsi_kernel(){
 
 #ls -la $(pwd)/kernel
 
+cd /root/project/predator/samsung
 ./build_kernel.sh
 
 
