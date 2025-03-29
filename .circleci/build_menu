@@ -18,7 +18,7 @@ git clone --depth=1 https://github.com/osm0sis/AnyKernel3 AnyKernel3
 echo "Done"
 KERNEL_DIR=/root/project/predator/samsung/kernel-5.10
 OUT_DIR="${KERNEL_DIR}/out"
-REPACK_DIR="${KERNEL_DIR}/AnyKernel3"
+REPACK_DIR="${PARENT_DIR}/AnyKernel3"
 IMAGE="${KERNEL_DIR}/arch/arm64/boot/Image"
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
@@ -50,48 +50,16 @@ build_kernel(){
   [ ! -d "$OUT_DIR" ] && mkdir $OUT_DIR
   python scripts/gen_build_config.py --kernel-defconfig gta9wifi_00_defconfig --kernel-defconfig-overlays "entry_level.config ot11.config" -m user -o out/build.config
 
-  export BUILD_CONFIG="./out/build.config"  
-  cd ./out
-  wget https://raw.githubusercontent.com/kevdes/samsung_x110/refs/heads/stock/.circleci/.config
-  cd ..
-  ls -la ./out
-  make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV gta9wifi_00
-  #echo "-------"
-  ls -la ./out
-  #echo "-------"
-  #make -j$(nproc) -C $(pwd) O=${OUT_DIR} $KERNEL_MAKE_ENV
+  cd kernel-5.10
+  python scripts/gen_build_config.py --kernel-defconfig gta9wifi_00_defconfig --kernel-defconfig-overlays "entry_level.config ot11.config ot11_wifi.config wifionly.config" -m user -o ../out/target/product/gta9wifi/obj/KERNEL_OBJ/build.config
 
-  [ -e "$(pwd)/arch/arm64/boot/Image.gz" ] && cp "$(pwd)/arch/arm64/boot/Image.gz" $OUT_DIR/Image.gz
-  if [ -e "$(pwd)/arch/arm64/boot/Image" ]; then
-    cp "$(pwd)/arch/arm64/boot/Image" $OUT_DIR/Image
+  export ARCH=arm64
+  export CROSS_COMPILE="aarch64-linux-gnu-"
+  export CROSS_COMPILE_COMPAT="arm-linux-gnueabi-"
+  export OUT_DIR="../out/target/product/gta9wifi/obj/KERNEL_OBJ"
+  export DIST_DIR="../out/target/product/gta9wifi/obj/KERNEL_OBJ"
+  export BUILD_CONFIG="../out/target/product/gta9wifi/obj/KERNEL_OBJ/build.config"
 
-    DTB_DIR=$(pwd)/arch/arm64/boot/dts
-    $(pwd)/tools/mkdtimg cfg_create $(pwd)/out/dtb.img dt.configs/exynos2100.cfg -d ${DTB_DIR}/exynos
-    $(pwd)/tools/mkdtimg cfg_create $(pwd)/out/dtbo.img dt.configs/r9s.cfg -d ${DTB_DIR}/samsung/r9s
-    echo "${BGREEN}***** Ready to Roar *****${STD}"
-  fi
-
-  
-  if [ -e "$(pwd)/arch/arm64/boot/Image" ]; then
-    cd "$(pwd)/AnyKernel3"
-    git reset --hard
-    cp $IMAGE zImage
-    cp $OUT_DIR/dtbo.img dtbo.img
-    sed -i "s/ExampleKernel by osm0sis/exynos2100-r9sxxx Stock kernel by prorooter007/g" anykernel.sh
-    sed -i "s/=maguro/=r9s/g" anykernel.sh
-    sed -i "s/=toroplus/=/g" anykernel.sh
-    sed -i "s/=toro/=/g" anykernel.sh
-    sed -i "s/=tuna/=/g" anykernel.sh
-    sed -i "s/platform\/omap\/omap_hsmmc\.0\/by-name\/boot/bootdevice\/by-name\/boot/g" anykernel.sh
-    sed -i "s/backup_file/#backup_file/g" anykernel.sh
-    sed -i "s/replace_string/#replace_string/g" anykernel.sh
-    sed -i "s/insert_line/#insert_line/g" anykernel.sh
-    sed -i "s/append_file/#append_file/g" anykernel.sh
-    sed -i "s/patch_fstab/#patch_fstab/g" anykernel.sh
-    zip -r9 "$(pwd)/exynos2100-r9sxxx_kernel_.zip" * -x .git README.md *placeholder
-    
-    curl https://bashupload.com/$REPACK_DIR/exynos2100-r9sxxx_kernel_.zip --data-binary @$REPACK_DIR/exynos2100-r9sxxx_kernel_.zip
-  fi
 }
 
 gsi_kernel(){
