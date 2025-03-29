@@ -17,7 +17,7 @@ git clone --depth=1  https://github.com/kdrag0n/proton-clang.git clang
 git clone --depth=1 https://github.com/osm0sis/AnyKernel3 AnyKernel3
 echo "Done"
 KERNEL_DIR=/root/project/predator/samsung/kernel-5.10
-OUT_DIR="${KERNEL_DIR}/out"
+#OUT_DIR="${KERNEL_DIR}/out"
 REPACK_DIR="${PARENT_DIR}/AnyKernel3"
 IMAGE="${KERNEL_DIR}/arch/arm64/boot/Image"
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
@@ -47,10 +47,10 @@ cd ${KERNEL_DIR}
 
 build_kernel(){  
   echo "${BGREEN}***** Compiling kernel *****${STD}"  
-  [ ! -d "$OUT_DIR" ] && mkdir $OUT_DIR
-  python scripts/gen_build_config.py --kernel-defconfig gta9wifi_00_defconfig --kernel-defconfig-overlays "entry_level.config ot11.config" -m user -o out/build.config
+  #[ ! -d "$OUT_DIR" ] && mkdir $OUT_DIR
+  #python scripts/gen_build_config.py --kernel-defconfig gta9wifi_00_defconfig --kernel-defconfig-overlays "entry_level.config ot11.config" -m user -o out/build.config
 
-  cd kernel-5.10
+  #cd kernel-5.10
   python scripts/gen_build_config.py --kernel-defconfig gta9wifi_00_defconfig --kernel-defconfig-overlays "entry_level.config ot11.config ot11_wifi.config wifionly.config" -m user -o ../out/target/product/gta9wifi/obj/KERNEL_OBJ/build.config
 
   export ARCH=arm64
