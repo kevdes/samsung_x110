@@ -59,7 +59,8 @@ build_kernel(){
   export OUT_DIR="../out/target/product/gta9wifi/obj/KERNEL_OBJ"
   export DIST_DIR="../out/target/product/gta9wifi/obj/KERNEL_OBJ"
   export BUILD_CONFIG="../out/target/product/gta9wifi/obj/KERNEL_OBJ/build.config"
-
+  cd ../kernel
+  ./build/build.sh
 }
 
 gsi_kernel(){
