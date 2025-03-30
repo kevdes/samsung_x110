@@ -557,6 +557,12 @@ CC_ARG="${CC}"
 
 source "${ROOT_DIR}/build/_setup_env.sh"
 
+cd ${KERNEL_DIR}
+make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10 gki_defconfig 
+make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10
+
+
+
 MAKE_ARGS=( "$@" )
 export MAKEFLAGS="-j$(nproc) ${MAKEFLAGS}"
 export MODULES_STAGING_DIR=$(readlink -m ${COMMON_OUT_DIR}/staging)
