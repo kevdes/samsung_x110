@@ -106,7 +106,7 @@ if [ "${HERMETIC_TOOLCHAIN:-0}" -eq 1 ]; then
   do
       ln -sf $(which $tool) ${HOST_TOOLS}
   done
-  #export PATH=${HOST_TOOLS}:${INCLUDE_PATH}:$PATH
+  export PATH #=${HOST_TOOLS}:${INCLUDE_PATH}:$PATH
 
   # use relative paths for file name references in the binaries
   # (e.g. debug info)
