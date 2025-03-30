@@ -59,11 +59,11 @@ build_kernel(){
   export OUT_DIR="../out/target/product/gta9wifi/obj/KERNEL_OBJ"
   export DIST_DIR="../out/target/product/gta9wifi/obj/KERNEL_OBJ"
   export BUILD_CONFIG="../out/target/product/gta9wifi/obj/KERNEL_OBJ/build.config"
-  #cd ../kernel
-  #./build/build.sh
+  cd ../kernel
+  ./build/build.sh
 
-  make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10 gki_defconfig 
-  make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10
+ # make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10 gki_defconfig 
+ # make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10
 }
 
 gsi_kernel(){
