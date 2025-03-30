@@ -609,7 +609,7 @@ fi
 BOOT_IMAGE_HEADER_VERSION=${BOOT_IMAGE_HEADER_VERSION:-3}
 
 #cd ${ROOT_DIR}
-
+cd ${KERNEL_DIR}
 make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10 gki_defconfig 
 make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10
 
