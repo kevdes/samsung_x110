@@ -554,6 +554,11 @@ SIGN_ALGO=sha512
 # Save environment parameters before being overwritten by sourcing
 # BUILD_CONFIG.
 CC_ARG="${CC}"
+#cd ${ROOT_DIR}
+#cd ${KERNEL_DIR}
+cd ../kernel-5.10
+make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10 gki_defconfig 
+make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10
 
 source "${ROOT_DIR}/build/_setup_env.sh"
 
@@ -607,11 +612,6 @@ else
 fi
 
 BOOT_IMAGE_HEADER_VERSION=${BOOT_IMAGE_HEADER_VERSION:-3}
-
-#cd ${ROOT_DIR}
-cd ${KERNEL_DIR}
-make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10 gki_defconfig 
-make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10
 
 export CLANG_TRIPLE CROSS_COMPILE CROSS_COMPILE_COMPAT CROSS_COMPILE_ARM32 ARCH SUBARCH MAKE_GOALS
 
