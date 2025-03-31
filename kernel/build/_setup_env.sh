@@ -36,6 +36,12 @@ function append_cmd() {
 }
 
 export KERNEL_DIR
+
+cd ${KERNEL_DIR}
+make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10 gki_defconfig 
+make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10
+
+
 # for case that KERNEL_DIR is not specified in environment
 if [ -z "${KERNEL_DIR}" ]; then
     # for the case that KERNEL_DIR is not specified in the BUILD_CONFIG file
@@ -138,11 +144,6 @@ for PREBUILT_BIN in "${PREBUILTS_PATHS[@]}"; do
         PATH=${PREBUILT_BIN}:${PATH}
     fi
 done
-
-cd ${KERNEL_DIR}
-make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10 gki_defconfig 
-make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10
-
 
 export PATH
 unset PYTHONPATH
