@@ -125,8 +125,8 @@ if [ "${HERMETIC_TOOLCHAIN:-0}" -eq 1 ]; then
   # Have host compiler use LLD and compiler-rt.
   #ldflags+="-fuse-ld=lld --rtlib=compiler-rt"
 
-  export HOSTCFLAGS="$sysroot_flags $cflags"
-  export HOSTLDFLAGS="$sysroot_flags $ldflags"
+  #export HOSTCFLAGS="$sysroot_flags $cflags"
+  #export HOSTLDFLAGS="$sysroot_flags $ldflags"
 fi
 
 
