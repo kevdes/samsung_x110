@@ -556,11 +556,13 @@ SIGN_ALGO=sha512
 CC_ARG="${CC}"
 #cd ${ROOT_DIR}
 #cd ${KERNEL_DIR}
+
+source "${ROOT_DIR}/build/_setup_env.sh"
+
 cd ../kernel-5.10
 make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10 gki_defconfig 
 make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10
 
-source "${ROOT_DIR}/build/_setup_env.sh"
 
 MAKE_ARGS=( "$@" )
 export MAKEFLAGS="-j$(nproc) ${MAKEFLAGS}"
