@@ -119,8 +119,8 @@ if [ "${HERMETIC_TOOLCHAIN:-0}" -eq 1 ]; then
   cflags+="-I${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/include "
 
   # add openssl and further prebuilt libraries into the lookup path
-  ldflags+="-Wl,-rpath,${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/lib64 "
-  ldflags+="-L ${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/lib64 "
+ # ldflags+="-Wl,-rpath,${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/lib64 "
+  #ldflags+="-L ${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/lib64 "
 
   # Have host compiler use LLD and compiler-rt.
   #ldflags+="-fuse-ld=lld --rtlib=compiler-rt"
