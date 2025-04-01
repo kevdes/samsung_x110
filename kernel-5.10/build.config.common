@@ -6,7 +6,8 @@ DEPMOD=depmod
 DTC=dtc
 #CLANG_PREBUILT_BIN=prebuilts-master/clang/host/linux-x86/clang-r416183b/bin
 CLANG_PREBUILT_BIN="/root/project/predator/kernel/clang/clang-r450784e/bin"
-BUILDTOOLS_PREBUILT_BIN=build/root/project/predator/kernel/build-tools/path/linux-x86
+#BUILDTOOLS_PREBUILT_BIN=build/root/project/predator/kernel/build-tools/path/linux-x86
+BUILDTOOLS_PREBUILT_BIN=/root/project/predator/samsung/kernel/build-tools/path/linux-x86
 
 KCFLAGS="${KCFLAGS} -D__ANDROID_COMMON_KERNEL__"
 EXTRA_CMDS=''
