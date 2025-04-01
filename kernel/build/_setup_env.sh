@@ -81,10 +81,10 @@ export KBUILD_BUILD_VERSION=1
 
 # List of prebuilt directories shell variables to incorporate into PATH
 PREBUILTS_PATHS=(
-#LINUX_GCC_CROSS_COMPILE_PREBUILTS_BIN
-#LINUX_GCC_CROSS_COMPILE_ARM32_PREBUILTS_BIN
-#LINUX_GCC_CROSS_COMPILE_COMPAT_PREBUILTS_BIN
-#CLANG_PREBUILT_BIN
+LINUX_GCC_CROSS_COMPILE_PREBUILTS_BIN
+LINUX_GCC_CROSS_COMPILE_ARM32_PREBUILTS_BIN
+LINUX_GCC_CROSS_COMPILE_COMPAT_PREBUILTS_BIN
+CLANG_PREBUILT_BIN
 LZ4_PREBUILTS_BIN
 DTC_PREBUILTS_BIN
 LIBUFDT_PREBUILTS_BIN
@@ -119,11 +119,11 @@ if [ "${HERMETIC_TOOLCHAIN:-0}" -eq 1 ]; then
   cflags+="-I${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/include "
 
   # add openssl and further prebuilt libraries into the lookup path
- # ldflags+="-Wl,-rpath,${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/lib64 "
-  #ldflags+="-L ${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/lib64 "
+  ldflags+="-Wl,-rpath,${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/lib64 "
+  ldflags+="-L ${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/lib64 "
 
   # Have host compiler use LLD and compiler-rt.
-  #ldflags+="-fuse-ld=lld --rtlib=compiler-rt"
+  ldflags+="-fuse-ld=lld --rtlib=compiler-rt"
 
   #export HOSTCFLAGS="$sysroot_flags $cflags"
   #export HOSTLDFLAGS="$sysroot_flags $ldflags"
