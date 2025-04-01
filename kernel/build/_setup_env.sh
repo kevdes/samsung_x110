@@ -79,7 +79,66 @@ export KBUILD_BUILD_HOST=build-host
 export KBUILD_BUILD_USER=build-user
 export KBUILD_BUILD_VERSION=1
 
+# List of prebuilt directories shell variables to incorporate into PATH
+PREBUILTS_PATHS=(
+LINUX_GCC_CROSS_COMPILE_PREBUILTS_BIN
+LINUX_GCC_CROSS_COMPILE_ARM32_PREBUILTS_BIN
+LINUX_GCC_CROSS_COMPILE_COMPAT_PREBUILTS_BIN
+CLANG_PREBUILT_BIN
+LZ4_PREBUILTS_BIN
+DTC_PREBUILTS_BIN
+LIBUFDT_PREBUILTS_BIN
+BUILDTOOLS_PREBUILT_BIN
+)
+export MAKEFLAGS="-j$(nproc) ${MAKEFLAGS}"
+if [ "${HERMETIC_TOOLCHAIN:-0}" -eq 1 ]; then
+  HOST_TOOLS=${OUT_DIR}/host_tools
+  rm -rf ${HOST_TOOLS}
+  mkdir -p ${HOST_TOOLS}
+  for tool in \
+      bash \
+      git \
+      perl \
+      rsync \
+      sh \
+      tar \
+      ${ADDITIONAL_HOST_TOOLS}
+  do
+      ln -sf $(which $tool) ${HOST_TOOLS}
+  done
+  #export PATH=${HOST_TOOLS}:${INCLUDE_PATH}:$PATH
 
+  # use relative paths for file name references in the binaries
+  # (e.g. debug info)
+  export KCPPFLAGS="-ffile-prefix-map=${ROOT_DIR}/${KERNEL_DIR}/= -ffile-prefix-map=${ROOT_DIR}/="
+
+  # set the common sysroot
+  sysroot_flags+="--sysroot=${ROOT_DIR}/build/build-tools/sysroot "
+
+  # add openssl (via boringssl) and other prebuilts into the lookup path
+  cflags+="-I${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/include "
+
+  # add openssl and further prebuilt libraries into the lookup path
+  ldflags+="-Wl,-rpath,${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/lib64 "
+  ldflags+="-L ${ROOT_DIR}/prebuilts/kernel-build-tools/linux-x86/lib64 "
+
+  # Have host compiler use LLD and compiler-rt.
+  #ldflags+="-fuse-ld=lld --rtlib=compiler-rt"
+
+  export HOSTCFLAGS="$sysroot_flags $cflags"
+  export HOSTLDFLAGS="$sysroot_flags $ldflags"
+fi
+
+for PREBUILT_BIN in "${PREBUILTS_PATHS[@]}"; do
+    PREBUILT_BIN=\${${PREBUILT_BIN}}
+    eval PREBUILT_BIN="${PREBUILT_BIN}"
+    echo {${PREBUILT_BIN}
+    if [ -n "${PREBUILT_BIN}" ]; then
+        # Mitigate dup paths
+        # PATH=${PATH//"${ROOT_DIR}\/${PREBUILT_BIN}:"}
+        PATH=${PREBUILT_BIN}:${PATH}
+    fi
+done
 
 
 
