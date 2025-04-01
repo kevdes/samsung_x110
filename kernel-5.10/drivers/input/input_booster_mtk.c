@@ -4,7 +4,7 @@
 #include <linux/cpu.h>
 #include <linux/cpufreq.h>
 #include <linux/slab.h>
-#include "dvfsrc-exp.h"
+//#include "dvfsrc-exp.h"
 
 //#define CONFIG_MTK_DVFSRC 0
 
