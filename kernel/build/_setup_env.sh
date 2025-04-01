@@ -129,15 +129,7 @@ if [ "${HERMETIC_TOOLCHAIN:-0}" -eq 1 ]; then
   export HOSTLDFLAGS="$sysroot_flags $ldflags"
 fi
 
-for PREBUILT_BIN in "${PREBUILTS_PATHS[@]}"; do
-    PREBUILT_BIN=\${${PREBUILT_BIN}}
-    eval PREBUILT_BIN="${PREBUILT_BIN}"
-    if [ -n "${PREBUILT_BIN}" ]; then
-        # Mitigate dup paths
-        # PATH=${PATH//"${ROOT_DIR}\/${PREBUILT_BIN}:"}
-        PATH=${PREBUILT_BIN}:${PATH}
-    fi
-done
+
 
 export PATH
 unset PYTHONPATH
