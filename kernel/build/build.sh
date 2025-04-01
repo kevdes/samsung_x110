@@ -557,9 +557,10 @@ CC_ARG="${CC}"
 #cd ${ROOT_DIR}
 #cd ${KERNEL_DIR}
 
-# source "${ROOT_DIR}/build/_setup_env.sh"
+source "${ROOT_DIR}/build/_setup_env.sh"
 
-cd ../kernel-5.10
+#cd ../kernel-5.10
+cd /root/project/predator/samsung/kernel-5.10
 echo $PWD
 make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10 gki_defconfig 
 make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10
