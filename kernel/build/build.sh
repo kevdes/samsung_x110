@@ -557,7 +557,7 @@ CC_ARG="${CC}"
 #cd ${ROOT_DIR}
 #cd ${KERNEL_DIR}
 
-source "${ROOT_DIR}/build/_setup_env.sh"
+#source "${ROOT_DIR}/build/_setup_env.sh"
 
 #cd ../kernel-5.10
 #cd /root/project/predator/samsung/kernel-5.10
