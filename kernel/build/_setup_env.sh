@@ -17,10 +17,6 @@
 # been warned! If you have a good reason to source the result of this file into
 # a shell, please let kernel-team@android.com know and we are happy to help
 # with your use case.
-cd ${KERNEL_DIR}
-make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10 gki_defconfig 
-make LLVM=1 LLVM_IAS=1 DEPMOD=depmod DTC=dtc O=/root/project/predator/samsung/out/target/product/gta9wifi/obj/KERNEL_OBJ/kernel-5.10
-
 [ -n "$_SETUP_ENV_SH_INCLUDED" ] && return || _SETUP_ENV_SH_INCLUDED=1
 
 # TODO: Use a $(gettop) style method.
