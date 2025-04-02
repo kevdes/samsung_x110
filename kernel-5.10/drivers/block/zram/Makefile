@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 ccflags-y += \
-        -Wno-implicit-function-declaration
+        -Wno-implicit-function-declaration \
+        -Wno-unused-variable
 
 zram-y	:=	zcomp.o zram_drv.o
 
