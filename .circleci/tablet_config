@@ -2559,7 +2559,7 @@ CONFIG_GENERIC_PINCONF=y
 #
 # MediaTek pinctrl drivers
 #
-CONFIG_EINT_MTK=y
+# CONFIG_EINT_MTK is not set
 # CONFIG_PINCTRL_MTK is not set
 # CONFIG_PINCTRL_MTK_V2 is not set
 # CONFIG_PINCTRL_MTK_PARIS is not set
