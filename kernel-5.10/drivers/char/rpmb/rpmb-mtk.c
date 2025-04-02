@@ -245,7 +245,6 @@ do {\
 	} \
 } while (false)
 
-static struct task_struct *open_th;
 #if IS_ENABLED(CONFIG_TRUSTONIC_TEE_SUPPORT)
 static struct task_struct *rpmb_gp_Dci_th;
 #endif
@@ -306,56 +305,6 @@ void rpmb_req_copy_data_for_hmac(u8 *buf, struct rpmb_frame *f)
 	buf += size;
 }
 
-static int hmac_sha256(const char *keybytes, u32 klen, const char *str,
-			size_t len, u8 *hmac)
-{
-	struct shash_desc *shash;
-	struct crypto_shash *hmacsha256 = crypto_alloc_shash("hmac(sha256)",
-							     0, 0);
-	size_t size = 0;
-	int err = 0;
-	unsigned int nbytes = (unsigned int)len;
-
-	if (IS_ERR(hmacsha256))
-		return -1;
-
-	size = sizeof(struct shash_desc) + crypto_shash_descsize(hmacsha256);
-
-	shash = kmalloc(size, GFP_KERNEL);
-	if (shash == NULL) {
-		err = -1;
-		goto malloc_err;
-	}
-	shash->tfm = hmacsha256;
-
-	err = crypto_shash_setkey(hmacsha256, keybytes, klen);
-	if (err != 0) {
-		err = -1;
-		goto hash_err;
-	}
-
-	err = crypto_shash_init(shash);
-	if (err != 0) {
-		err = -1;
-		goto hash_err;
-	}
-
-	err = crypto_shash_update(shash, str, nbytes);
-	if (err != 0) {
-		err = -1;
-		goto hash_err;
-	}
-
-	err = crypto_shash_final(shash, hmac);
-
-hash_err:
-	kfree(shash);
-malloc_err:
-	crypto_free_shash(hmacsha256);
-
-	return err;
-}
-
 #ifdef __RPMB_MTK_DEBUG_HMAC_VERIFY
 unsigned char g_rpmb_key[RPMB_SZ_KEY] = {
 	0x64, 0x76, 0xEE, 0xF0, 0xF1, 0x6B, 0x30, 0x47,
@@ -385,36 +334,6 @@ static int rpmb_cal_hmac(struct rpmb_frame *frame, u16 blk_cnt,
 	return 0;
 }
 #endif
-
-static void rpmb_dump_frame(u8 *data_frame)
-{
-	MSG(DBG_INFO, "mac, frame[196] = 0x%x\n", data_frame[196]);
-	MSG(DBG_INFO, "mac, frame[197] = 0x%x\n", data_frame[197]);
-	MSG(DBG_INFO, "mac, frame[198] = 0x%x\n", data_frame[198]);
-	MSG(DBG_INFO, "data,frame[228] = 0x%x\n", data_frame[228]);
-	MSG(DBG_INFO, "data,frame[229] = 0x%x\n", data_frame[229]);
-	MSG(DBG_INFO, "nonce, frame[484] = 0x%x\n", data_frame[484]);
-	MSG(DBG_INFO, "nonce, frame[485] = 0x%x\n", data_frame[485]);
-	MSG(DBG_INFO, "nonce, frame[486] = 0x%x\n", data_frame[486]);
-	MSG(DBG_INFO, "nonce, frame[487] = 0x%x\n", data_frame[487]);
-	MSG(DBG_INFO, "wc, frame[500] = 0x%x\n", data_frame[500]);
-	MSG(DBG_INFO, "wc, frame[501] = 0x%x\n", data_frame[501]);
-	MSG(DBG_INFO, "wc, frame[502] = 0x%x\n", data_frame[502]);
-	MSG(DBG_INFO, "wc, frame[503] = 0x%x\n", data_frame[503]);
-	MSG(DBG_INFO, "addr, frame[504] = 0x%x\n", data_frame[504]);
-	MSG(DBG_INFO, "addr, frame[505] = 0x%x\n", data_frame[505]);
-	MSG(DBG_INFO, "blkcnt,frame[506] = 0x%x\n", data_frame[506]);
-	MSG(DBG_INFO, "blkcnt,frame[507] = 0x%x\n", data_frame[507]);
-	MSG(DBG_INFO, "result, frame[508] = 0x%x\n", data_frame[508]);
-	MSG(DBG_INFO, "result, frame[509] = 0x%x\n", data_frame[509]);
-	MSG(DBG_INFO, "type, frame[510] = 0x%x\n", data_frame[510]);
-	MSG(DBG_INFO, "type, frame[511] = 0x%x\n", data_frame[511]);
-}
-
-static struct rpmb_frame *rpmb_alloc_frames(unsigned int cnt)
-{
-	return kzalloc(sizeof(struct rpmb_frame) * cnt, 0);
-}
 
 #ifdef __RPMB_KERNEL_NL_SUPPORT
 static int nl_rpmb_cmd_req(const struct rpmb_data *rpmbd)
@@ -2494,11 +2413,6 @@ static int rpmb_thread(void *context)
 }
 #endif
 
-static int rpmb_open(struct inode *pinode, struct file *pfile)
-{
-	return 0;
-}
-
 #if IS_ENABLED(CONFIG_SCSI_UFS_MEDIATEK)
 static long rpmb_ioctl_ufs(struct file *pfile, unsigned int cmd, unsigned long arg)
 {
@@ -2681,15 +2595,6 @@ end:
 	return ret;
 }
 #endif
-
-static int rpmb_close(struct inode *pinode, struct file *pfile)
-{
-	int ret = 0;
-
-	MSG(INFO, "%s, !!!!!!!!!!!!\n", __func__);
-
-	return ret;
-}
 
 #ifdef __RPMB_KERNEL_NL_SUPPORT
 static int rpmb_mtk_snd_msg(void *pbuf, u16 len)
