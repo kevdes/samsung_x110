@@ -13,7 +13,7 @@
 #include <sound/pcm_params.h>
 
 #include "mt6660.h"
-#include <mtk-sp-spk-amp.h>
+#include "../mediatek/common/mtk-sp-spk-amp.h"
 
 struct reg_size_table {
 	u32 addr;
