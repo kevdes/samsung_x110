@@ -393,7 +393,7 @@ static struct console mboot_params = {
 	.flags = CON_PRINTBUFFER | CON_ENABLED | CON_ANYTIME,
 	.index = -1,
 };
-
+/*
 void aee_sram_printk(const char *fmt, ...)
 {
 	unsigned long long t;
@@ -425,7 +425,7 @@ void aee_sram_printk(const char *fmt, ...)
 	va_end(args);
 }
 EXPORT_SYMBOL(aee_sram_printk);
-
+*/
 int aee_is_enable(void)
 {
 	struct device_node *node;
