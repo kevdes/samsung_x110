@@ -86,9 +86,6 @@ struct mtk_eint {
 	unsigned int dump_target_eint;
 	const struct mtk_eint_compatible *comp;
 
-	const struct mtk_eint_hw *hw;
-	const struct mtk_eint_regs *regs;
-
 	/* Used to fit into various pinctrl device */
 	void *pctl;
 	const struct mtk_eint_xt *gpio_xlate;
