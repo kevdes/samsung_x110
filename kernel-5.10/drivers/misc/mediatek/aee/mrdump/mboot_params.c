@@ -425,7 +425,7 @@ void aee_sram_printk(const char *fmt, ...)
 	va_end(args);
 }
 EXPORT_SYMBOL(aee_sram_printk);
-*/
+
 int aee_is_enable(void)
 {
 	struct device_node *node;
@@ -448,7 +448,7 @@ int aee_is_enable(void)
 	return ret;
 }
 EXPORT_SYMBOL(aee_is_enable);
-
+*/
 void mboot_params_enable_console(int enabled)
 {
 	if (enabled)
