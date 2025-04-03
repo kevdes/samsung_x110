@@ -12,8 +12,8 @@ echo "Cloning dependencies"
 #cd samsung 
 git clone --depth=1 --branch android-11.0.0_r48 https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 aarch64-linux-android-4.9
 #git clone --depth=1  https://github.com/prorooter007/android_prebuilts_clang_host_linux-x86_clang-6877366 clang
-#git clone --depth=1  https://git.codelinaro.org/clo/la/kernelplatform/prebuilts-master/clang/host/linux-x86.git clang
-git clone --depth=1  https://gitlab.com/kei-space/clang/r522817.git clang
+git clone --depth=1  https://git.codelinaro.org/clo/la/kernelplatform/prebuilts-master/clang/host/linux-x86.git clang
+#git clone --depth=1  https://gitlab.com/kei-space/clang/r522817.git clang
 #git clone --depth=1  https://github.com/kdrag0n/proton-clang.git clang
 git clone --depth=1 https://github.com/osm0sis/AnyKernel3 AnyKernel3
 echo "Done"
