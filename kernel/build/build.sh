@@ -739,15 +739,12 @@ fi
 
 echo "========================================================"
 echo " Setting up for build"
-echo '00000000'
 
 if [ "${SKIP_MRPROPER}" != "1" ] ; then
   set -x
   (cd ${KERNEL_DIR} && make "${TOOL_ARGS[@]}" O=${OUT_DIR} "${MAKE_ARGS[@]}" mrproper)
   set +x
 fi
-
-echo '11111111'
 
 if [ -n "${PRE_DEFCONFIG_CMDS}" ]; then
   echo "========================================================"
@@ -759,6 +756,7 @@ fi
 
 echo '22222222'
 cp /root/project/predator/samsung/.circleci/tablet_config ${OUT_DIR}/.config
+cd ${KERNEL_DIR} && make "${TOOL_ARGS[@]}" O=${OUT_DIR} menuconfig
 
 if [ "${SKIP_DEFCONFIG}" != "1" ] ; then
   set -x
