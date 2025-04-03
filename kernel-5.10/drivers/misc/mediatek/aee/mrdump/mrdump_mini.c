@@ -2,7 +2,7 @@
 /*
  * Copyright (C) 2016 MediaTek Inc.
  */
-
+#include <stddef.h>
 #include <linux/android_debug_symbols.h>
 #include <linux/bug.h>
 #include <linux/compiler.h>
