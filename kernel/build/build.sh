@@ -756,7 +756,7 @@ fi
 
 echo '22222222'
 cp /root/project/predator/samsung/.circleci/tablet_config ${OUT_DIR}/.config
-cd ${KERNEL_DIR} && make "${TOOL_ARGS[@]}" O=${OUT_DIR} menuconfig
+#cd ${KERNEL_DIR} && make "${TOOL_ARGS[@]}" O=${OUT_DIR} menuconfig
 
 if [ "${SKIP_DEFCONFIG}" != "1" ] ; then
   set -x
